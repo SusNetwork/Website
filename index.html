@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SusNetwork</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+#particles{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.32;box-shadow:0 0 7px rgba(255,255,255,.45);animation:moveParticle linear infinite}
+@keyframes moveParticle{
+  0%{transform:translateX(-12vw);opacity:0}
+  8%{opacity:.32}
+  92%{opacity:.32}
+  100%{transform:translateX(112vw);opacity:0}
+}
+
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080d16;color:#e8eef7;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(1100px,calc(100% - 40px));margin:auto}
+nav{height:72px;border-bottom:1px solid #172131;background:#080d16;display:flex;align-items:center}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(1100px,calc(100% - 40px));margin:auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:19px}
+.brand img{width:36px;height:36px;border-radius:9px}
+.github{display:flex;align-items:center;gap:8px;color:#aeb9c9;font-size:14px;transition:.2s}
+.github:hover{color:#fff}
+.github svg{width:20px;height:20px;fill:currentColor}
+.hero{padding:110px 0 85px;max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#7f9bc2;font-size:13px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:#5c8bd8}
+h1{font-size:clamp(44px,8vw,78px);line-height:.98;letter-spacing:-.055em;color:#fff;margin-bottom:25px}
+.hero p{font-size:18px;color:#9eabbc;max-width:650px}
+.status{margin-top:34px;display:flex;align-items:center;gap:14px;color:#aeb9c9;font-size:14px}
+.status strong{color:#dce6f4}
+.progress-wrap{margin-top:12px;width:100%;max-width:650px}
+.progress{height:8px;background:#172131;border-radius:99px;overflow:hidden}
+.progress span{display:block;width:20%;height:100%;background:#527fbd;border-radius:99px}
+.progress-meta{display:flex;justify-content:space-between;margin-top:9px;color:#68788f;font-size:12px}
+section{padding:30px 0 90px}
+.section-title{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#73839a;font-weight:700;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border:1px solid #172131;background:#0c131e;border-radius:14px;padding:27px;min-height:180px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#2b3c55;transform:translateY(-2px)}
+.icon{width:38px;height:38px;border:1px solid #25364e;border-radius:10px;display:grid;place-items:center;color:#86a6d4;margin-bottom:20px}
+.icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h2{font-size:17px;color:#f1f5fa;margin-bottom:7px}
+.card p{font-size:14px;color:#8998ab;max-width:430px}
+.highlight{color:#c9d9ee}
+footer{border-top:1px solid #172131;padding:27px 0;color:#65748a;font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+@media(max-width:650px){
+.container,.nav-inner{width:min(100% - 28px,1100px)}
+.hero{padding:75px 0 65px}
+h1{font-size:51px}
+.grid{grid-template-columns:1fr}
+.card{min-height:auto}
+.footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div id="particles" aria-hidden="true"></div>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      <img src="https://avatars.githubusercontent.com/u/351146476?s=200&v=4" alt="SusNetwork logo">
+      <span>SusNetwork</span>
+    </a>
+    <a class="github" href="https://github.com/SusNetwork" target="_blank" rel="noopener noreferrer" aria-label="SusNetwork on GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2.18c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 5.79 0c2.21-1.5 3.18-1.19 3.18-1.19.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.11 0 4.45-2.71 5.43-5.29 5.72.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="container">
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span> Private Among Us server · In development</div>
+    <h1>SusNetwork</h1>
+    <p>A private Among Us server focused on flexibility, custom features and community-driven development.</p>
+
+    <div class="status">
+      <span>Project progress</span>
+      <strong>20%</strong>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress"><span></span></div>
+      <div class="progress-meta"><span>Early development</span><span>20 / 100</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-title">Features</div>
+    <div class="grid">
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="17" cy="17" r="2.5"/></svg>
+        </div>
+        <h2>Custom FriendCodes</h2>
+        <p>Create your own FriendCode, such as <span class="highlight">johndoe#1234</span>.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><rect x="7" y="2.8" width="10" height="18.4" rx="2"/><path d="M10 5.5h4M11 18.2h2"/></svg>
+        </div>
+        <h2>Android Support</h2>
+        <p>Android support powered by <span class="highlight">BepInEx.Fusion</span>.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M17.7 6.3l-2.8 2.8M9.1 14.9l-2.8 2.8"/><circle cx="12" cy="12" r="3.2"/></svg>
+        </div>
+        <h2>Customizable Telemetry</h2>
+        <p>Telemetry is <span class="highlight">optional and customizable</span>. Never forced.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M8 3h8M7 7h10M5 12l7 8 7-8"/><path d="M12 20V8"/></svg>
+        </div>
+        <h2>Partially Open Source</h2>
+        <p>Parts of the SusNetwork project are publicly available and open source.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>SusNetwork · Work in progress</span>
+    <a class="github" href="https://github.com/SusNetwork" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+  </div>
+</footer>
+<script>
+const particles = document.getElementById("particles");
+const count = 70;
+
+for (let i = 0; i < count; i++) {
+  const dot = document.createElement("span");
+  dot.className = "particle";
+  dot.style.top = `${Math.random() * 100}vh`;
+  dot.style.left = `${-10 - Math.random() * 20}vw`;
+  dot.style.animationDuration = `${12 + Math.random() * 22}s`;
+  dot.style.animationDelay = `${-Math.random() * 30}s`;
+  dot.style.opacity = `${0.15 + Math.random() * 0.25}`;
+  particles.appendChild(dot);
+}
+</script>
+</body>
+</html>
