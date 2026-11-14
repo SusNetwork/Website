@@ -1,0 +1,27 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:    
+
+jobs:
+  deploy:
+    name: Deploy to Raspberry Pi
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger deployment
+        env:
+          DEPLOY_TOKEN: ${{ secrets.SUSNET_DEPLOY_TOKEN }}
+        run: |
+          curl --fail-with-body \
+            --silent \
+            --show-error \
+            --request POST \
+            --header "Authorization: Bearer ${DEPLOY_TOKEN}" \
+            https://api.susnetwork.isroot.in/deploy
+
+      - name: Deployment triggered
+        run: echo "SusNetwork deployment triggered successfully."
