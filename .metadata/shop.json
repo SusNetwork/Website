@@ -5,6 +5,12 @@
       "version": "1.0.0",
       "image": "https://media.forgecdn.net/avatars/thumbnails/1991/973/64/64/639226536253644670.png",
       "dll": "https://mirrors.susnetwork.isroot.in/mangocore/amongusrevamped/AmongUsRevamped.dll"
+    },
+    {
+      "name": "BlockAuth",
+      "version": "v1.0.0",
+      "image": "none",
+      "dll": "https://mirrors.susnetwork.isroot.in/mangocore/blockauth/BlockAuth.dll"
     }
   ]
 }
