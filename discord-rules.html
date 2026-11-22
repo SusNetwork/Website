@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discord Rules · SusNetwork</title>
+<link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/351146476?s=200&v=4">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+#particles{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.32;box-shadow:0 0 7px rgba(255,255,255,.45);animation:moveParticle linear infinite}
+@keyframes moveParticle{
+  0%{transform:translateX(-12vw);opacity:0}
+  8%{opacity:.32}
+  92%{opacity:.32}
+  100%{transform:translateX(112vw);opacity:0}
+}
+
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080d16;color:#e8eef7;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+.container{width:min(1100px,calc(100% - 40px));margin:auto}
+nav{height:72px;border-bottom:1px solid #172131;background:#080d16;display:flex;align-items:center}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(1100px,calc(100% - 40px));margin:auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:19px}
+.brand img{width:36px;height:36px;border-radius:9px}
+.github{display:flex;align-items:center;gap:8px;color:#aeb9c9;font-size:14px;transition:.2s}
+.github:hover{color:#fff}
+.github svg{width:20px;height:20px;fill:currentColor}
+
+main{flex:1;padding:70px 0 90px}
+.hero{max-width:760px;margin-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#7f9bc2;font-size:13px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:#5c8bd8}
+h1{font-size:clamp(40px,7vw,64px);line-height:1;letter-spacing:-.05em;color:#fff;margin-bottom:20px}
+.hero p{font-size:17px;color:#9eabbc;max-width:650px}
+
+.section-title{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#73839a;font-weight:700;margin-bottom:22px}
+.rules{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;counter-reset:rule}
+.rule{border:1px solid #172131;background:#0c131e;border-radius:14px;padding:24px;transition:border-color .2s,transform .2s}
+.rule:hover{border-color:#2b3c55;transform:translateY(-2px)}
+.rule h2{font-size:16px;color:#f1f5fa;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.rule h2::before{counter-increment:rule;content:counter(rule);display:grid;place-items:center;width:28px;height:28px;flex:none;border:1px solid #25364e;border-radius:8px;color:#86a6d4;font-size:13px}
+.rule p{font-size:14px;color:#8998ab;padding-left:40px}
+
+footer{border-top:1px solid #172131;padding:27px 0;color:#65748a;font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.disclaimer{width:100%;margin-top:18px;padding-top:16px;border-top:1px solid #172131;color:#56657a;font-size:12px;line-height:1.5}
+@media(max-width:650px){
+.container,.nav-inner{width:min(100% - 28px,1100px)}
+.rules{grid-template-columns:1fr}
+.rule p{padding-left:0;margin-top:0}
+.footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div id="particles" aria-hidden="true"></div>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="https://avatars.githubusercontent.com/u/351146476?s=200&v=4" alt="SusNetwork logo">
+      <span>SusNetwork</span>
+    </a>
+    <a class="github" href="https://github.com/SusNetwork" target="_blank" rel="noopener noreferrer" aria-label="SusNetwork on GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2.18c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 5.79 0c2.21-1.5 3.18-1.19 3.18-1.19.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.11 0 4.45-2.71 5.43-5.29 5.72.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="container">
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span> Community</div>
+    <h1>Discord Rules</h1>
+    <p>These rules apply to everyone in the SusNetwork Discord server. Please read them before posting.</p>
+  </header>
+
+  <section>
+    <div class="section-title">Rules</div>
+    <ol class="rules">
+      <li class="rule">
+        <h2>Follow Discord's rules</h2>
+        <p>Respect Discord's Terms of Service and Community Guidelines at all times.</p>
+      </li>
+      <li class="rule">
+        <h2>No harassment</h2>
+        <p>Do not harass, bully, or target other members, in messages, voice channels, or direct messages.</p>
+      </li>
+      <li class="rule">
+        <h2>No insults</h2>
+        <p>Keep the conversation respectful. Insults and personal attacks are not allowed.</p>
+      </li>
+      <li class="rule">
+        <h2>Don't ping for nothing</h2>
+        <p>Use mentions only when they are needed. Spamming @everyone, @here, or individual members is not allowed.</p>
+      </li>
+      <li class="rule">
+        <h2>Don't share information while gaming</h2>
+        <p>Do not share information while you are playing a game.</p>
+      </li>
+      <li class="rule">
+        <h2>No self-promotion</h2>
+        <p>Do not advertise your own content, servers, or services without permission from the staff.</p>
+      </li>
+      <li class="rule">
+        <h2>No scam or suspicious links</h2>
+        <p>Do not share scam links, phishing pages, or other suspicious or strange links.</p>
+      </li>
+      <li class="rule">
+        <h2>No hate speech</h2>
+        <p>Racism, antisemitism, homophobia, and any other form of hate are strictly forbidden.</p>
+      </li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>SusNetwork</span>
+    <a class="github" href="https://github.com/SusNetwork" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+  </div>
+  <div class="container">
+    <p class="disclaimer">SusNetwork is not affiliated with Innersloth LLC or the Among Us franchise. Among Us and all related elements belong to their respective owners.</p>
+  </div>
+</footer>
+
+<script>
+const particles = document.getElementById("particles");
+for (let i = 0; i < 70; i++) {
+  const dot = document.createElement("span");
+  dot.className = "particle";
+  dot.style.top = `${Math.random() * 100}vh`;
+  dot.style.left = `${-10 - Math.random() * 20}vw`;
+  dot.style.animationDuration = `${12 + Math.random() * 22}s`;
+  dot.style.animationDelay = `${-Math.random() * 30}s`;
+  dot.style.opacity = `${0.15 + Math.random() * 0.25}`;
+  particles.appendChild(dot);
+}
+</script>
+</body>
+</html>
