@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,15 +31,15 @@
 </head>
 <body>
   <main>
-    <h1>Administration des comptes</h1>
+    <h1>Account administration</h1>
     <p id="msg" class="msg" role="status"></p>
 
     <div class="wrap">
       <table>
         <thead>
           <tr>
-            <th>ID</th><th>Prénom</th><th>E-mail</th><th>Code ami</th>
-            <th>Code changé</th><th>Créé le</th><th></th>
+            <th>ID</th><th>First name</th><th>Email</th><th>Friend code</th>
+            <th>Code changed</th><th>Created on</th><th></th>
           </tr>
         </thead>
         <tbody id="rows"></tbody>
@@ -51,14 +51,14 @@
     const API = 'https://api.susnetwork.isroot.in';
     const $ = (id) => document.getElementById(id);
 
-    // Toute réponse non OK (pas admin, pas de session, erreur) affiche la même page 500.
+    // Any non-OK response (not admin, no session, server error) shows the same 500 page.
     function serverError() {
       document.body.innerHTML =
         '<main style="text-align:center;padding:4rem 1rem;font-family:system-ui,sans-serif;color:#e6e6e6">' +
         '<p style="font-size:5rem;font-weight:700;color:#6c8cff;margin:0">500</p>' +
-        '<h1 style="font-size:1.4rem;margin:.5rem 0 .75rem">Une erreur interne est survenue</h1>' +
-        '<p style="color:#9aa3b2">La page demandée n\'a pas pu être affichée.</p>' +
-        '<a href="/" style="color:#c3c9d4">Retour à l\'accueil</a></main>';
+        '<h1 style="font-size:1.4rem;margin:.5rem 0 .75rem">An internal error occurred</h1>' +
+        '<p style="color:#9aa3b2">The requested page could not be displayed.</p>' +
+        '<a href="/" style="color:#c3c9d4">Back to home</a></main>';
       document.body.style.background = '#0f1115';
     }
 
@@ -88,13 +88,13 @@
         code.appendChild(c);
         tr.appendChild(code);
 
-        tr.appendChild(cell(r.code_changed ? 'oui' : 'non'));
-        tr.appendChild(cell(new Date(r.created_at + 'Z').toLocaleString('fr-FR')));
+        tr.appendChild(cell(r.code_changed ? 'yes' : 'no'));
+        tr.appendChild(cell(new Date(r.created_at + 'Z').toLocaleString('en-GB')));
 
         const act = document.createElement('td');
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.textContent = 'Supprimer';
+        btn.textContent = 'Delete';
         btn.addEventListener('click', () => remove(r.id, r.email));
         act.appendChild(btn);
         tr.appendChild(act);
@@ -117,18 +117,18 @@
       }
       const rows = await res.json();
       render(rows);
-      showMsg(rows.length + ' compte(s).', true);
+      showMsg(rows.length + ' account(s).', true);
     }
 
     async function remove(id, email) {
-      if (!confirm('Supprimer définitivement le compte ' + email + ' ?')) return;
+      if (!confirm('Permanently delete the account ' + email + '?')) return;
       const res = await fetch(API + '/admin/accounts/' + encodeURIComponent(id), {
         method: 'DELETE',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: '{}',
       });
-      const json = await res.json().catch(() => ({ message: 'Erreur inattendue.' }));
+      const json = await res.json().catch(() => ({ message: 'Unexpected error.' }));
       showMsg(json.message, res.ok);
       if (res.ok) load();
     }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SusNetwork - Connexion</title>
+  <title>SusNetwork - Log in</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     * { box-sizing: border-box; }
@@ -42,11 +42,11 @@
 </head>
 <body>
   <main class="card">
-    <h1>Connexion</h1>
-    <p class="sub">Reçois un lien de connexion par e-mail</p>
+    <h1>Log in</h1>
+    <p class="sub">Get a login link by email</p>
 
     <form id="form" novalidate>
-      <label for="email">Adresse e-mail</label>
+      <label for="email">Email address</label>
       <input id="email" type="email" name="email" required autocomplete="email">
 
       <div class="captcha">
@@ -58,13 +58,13 @@
              data-error-callback="offCaptcha"></div>
       </div>
 
-      <button id="btn" type="submit" disabled>Envoyer le lien</button>
+      <button id="btn" type="submit" disabled>Send login link</button>
     </form>
 
     <p id="msg" role="status"></p>
   </main>
 
-  <footer><a href="signup.html">Réserver un compte</a></footer>
+  <footer><a href="signup.html">Create an account</a></footer>
 
   <script>
     const API = 'https://api.susnetwork.isroot.in';
@@ -77,13 +77,13 @@
       msg.className = ok ? 'ok' : 'err';
     }
 
-    // Arrivée depuis le lien e-mail : le token est dans le fragment (#token=...),
-    // il n'est donc jamais envoyé au serveur web ni journalisé.
+    // Arrival from the email link: the token is in the fragment (#token=...),
+    // so it is never sent to the web server or logged by nginx.
     const linkToken = new URLSearchParams(location.hash.slice(1)).get('token');
     if (linkToken) {
-      history.replaceState(null, '', location.pathname); // retire le token de la barre d'adresse
+      history.replaceState(null, '', location.pathname); // remove the token from the address bar
       form.hidden = true;
-      show('Connexion en cours…', true);
+      show('Logging you in…', true);
       (async () => {
         try {
           const res = await fetch(API + '/login/verify', {
@@ -92,7 +92,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: linkToken }),
           });
-          const json = await res.json().catch(() => ({ message: 'Erreur inattendue.' }));
+          const json = await res.json().catch(() => ({ message: 'Unexpected error.' }));
           if (res.ok) {
             location.replace('account.html');
           } else {
@@ -100,7 +100,7 @@
             form.hidden = false;
           }
         } catch {
-          show('Connexion impossible, réessaie.', false);
+          show('Unable to connect, please try again.', false);
           form.hidden = false;
         }
       })();
@@ -124,10 +124,10 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         });
-        const json = await res.json().catch(() => ({ message: 'Erreur inattendue.' }));
+        const json = await res.json().catch(() => ({ message: 'Unexpected error.' }));
         show(json.message, res.ok);
       } catch {
-        show('Connexion impossible, réessaie.', false);
+        show('Unable to connect, please try again.', false);
       } finally {
         if (window.turnstile) turnstile.reset();
         btn.disabled = true;

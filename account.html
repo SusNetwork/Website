@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SusNetwork - Mon compte</title>
+  <title>SusNetwork - My account</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     * { box-sizing: border-box; }
@@ -47,46 +47,46 @@
 </head>
 <body>
   <main class="card">
-    <h1>Mon compte SusNetwork</h1>
+    <h1>My SusNetwork account</h1>
 
     <p id="global" class="msg err" role="status"></p>
 
     <section id="content" hidden>
       <dl>
-        <dt>Prénom</dt><dd id="first_name"></dd>
-        <dt>E-mail</dt><dd id="email"></dd>
-        <dt>Code ami</dt><dd><code id="friend_code"></code></dd>
-        <dt>Créé le</dt><dd id="created_at"></dd>
+        <dt>First name</dt><dd id="first_name"></dd>
+        <dt>Email</dt><dd id="email"></dd>
+        <dt>Friend code</dt><dd><code id="friend_code"></code></dd>
+        <dt>Created on</dt><dd id="created_at"></dd>
       </dl>
 
-      <h2>Changer de code ami</h2>
+      <h2>Change friend code</h2>
       <div id="change-box">
         <form id="change-form" novalidate>
-          <label for="new_code">Nouveau code ami</label>
+          <label for="new_code">New friend code</label>
           <input id="new_code" type="text" name="friend_code" required
-                 pattern="[a-z]{6,10}#[0-9]{4}" placeholder="nouveaupseudo#1234">
-          <p class="hint">Un seul changement possible. L'ancien code est libéré immédiatement.</p>
+                 pattern="[a-z]{6,10}#[0-9]{4}" placeholder="newname#1234">
+          <p class="hint">You can only change it once. The old code is released immediately.</p>
 
           <div class="captcha">
             <div class="cf-turnstile"
-                 data-sitekey="VOTRE_SITE_KEY"
+                 data-sitekey="0x4AAAAAAGJDCCWogCokObwT"
                  data-theme="dark"
                  data-callback="onChangeCaptcha"
                  data-expired-callback="offChangeCaptcha"
                  data-error-callback="offChangeCaptcha"></div>
           </div>
 
-          <button id="change-btn" type="submit" disabled>Changer mon code ami</button>
+          <button id="change-btn" type="submit" disabled>Change my friend code</button>
           <p id="change-msg" class="msg" role="status"></p>
         </form>
       </div>
-      <p id="change-used" class="hint" hidden>Tu as déjà utilisé ton unique changement de code ami.</p>
+      <p id="change-used" class="hint" hidden>You have already used your one friend code change.</p>
 
-      <h2>Supprimer mon compte</h2>
-      <p class="hint">Supprime définitivement ton compte, ton code ami et toutes tes données.</p>
-      <button id="delete-btn" class="danger" type="button">Supprimer mon compte</button>
+      <h2>Delete my account</h2>
+      <p class="hint">Permanently deletes your account, your friend code and all your data.</p>
+      <button id="delete-btn" class="danger" type="button">Delete my account</button>
 
-      <button id="logout-btn" class="ghost" type="button">Se déconnecter</button>
+      <button id="logout-btn" class="ghost" type="button">Log out</button>
     </section>
   </main>
 
@@ -94,7 +94,7 @@
     const API = 'https://api.susnetwork.isroot.in';
     const $ = (id) => document.getElementById(id);
 
-    // Tous les appels envoient le cookie de session (credentials: 'include').
+    // Every call sends the session cookie (credentials: 'include').
     async function api(method, path, body) {
       const opts = { method, credentials: 'include', headers: {} };
       if (body) {
@@ -103,10 +103,10 @@
       }
       try {
         const res = await fetch(API + path, opts);
-        const data = await res.json().catch(() => ({ message: 'Erreur inattendue.' }));
+        const data = await res.json().catch(() => ({ message: 'Unexpected error.' }));
         return { ok: res.ok, status: res.status, data };
       } catch {
-        return { ok: false, status: 0, data: { message: 'Connexion impossible.' } };
+        return { ok: false, status: 0, data: { message: 'Unable to connect.' } };
       }
     }
 
@@ -128,7 +128,7 @@
       $('first_name').textContent = r.data.first_name;
       $('email').textContent = r.data.email;
       $('friend_code').textContent = r.data.friend_code;
-      $('created_at').textContent = new Date(r.data.created_at + 'Z').toLocaleString('fr-FR');
+      $('created_at').textContent = new Date(r.data.created_at + 'Z').toLocaleString('en-GB');
 
       if (r.data.code_changed) {
         $('change-box').hidden = true;
@@ -159,7 +159,7 @@
     });
 
     $('delete-btn').addEventListener('click', async () => {
-      const ok = confirm('Supprimer définitivement ton compte ? Ton code ami sera libéré et toutes tes données effacées.');
+      const ok = confirm('Permanently delete your account? Your friend code will be released and all your data erased.');
       if (!ok) return;
       const r = await api('DELETE', '/account', {});
       if (r.ok) {

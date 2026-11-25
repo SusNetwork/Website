@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SusNetwork - Réserver un compte</title>
+  <title>SusNetwork - Create an account</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     * { box-sizing: border-box; }
@@ -43,40 +43,40 @@
 <body>
   <main class="card">
     <h1>SusNetwork</h1>
-    <p class="sub">Réserve ton compte</p>
+    <p class="sub">Reserve your account</p>
 
     <form id="form" novalidate>
-      <label for="email">Adresse e-mail</label>
+      <label for="email">Email address</label>
       <input id="email" type="email" name="email" required autocomplete="email">
 
-      <label for="friend_code">Code ami désiré</label>
+      <label for="friend_code">Desired friend code</label>
       <input id="friend_code" type="text" name="friend_code" required
-             pattern="[a-z]{6,10}#[0-9]{4}" placeholder="monpseudo#1234"
-             title="6 à 10 lettres minuscules, puis # et 4 chiffres">
+             pattern="[a-z]{6,10}#[0-9]{4}" placeholder="myname#1234"
+             title="6 to 10 lowercase letters, then # and 4 digits">
 
-      <label for="first_name">Prénom</label>
+      <label for="first_name">First name</label>
       <input id="first_name" type="text" name="first_name" required maxlength="50" autocomplete="given-name">
 
       <label class="check">
         <input type="checkbox" name="age_confirmed" value="1" required>
-        J'ai au moins 15 ans
+        I am at least 15 years old
       </label>
 
       <div class="captcha">
         <div class="cf-turnstile"
-             data-sitekey="VOTRE_SITE_KEY"
+             data-sitekey="0x4AAAAAAGJDCCWogCokObwT"
              data-theme="dark"
              data-callback="onCaptcha"
              data-expired-callback="offCaptcha"
              data-error-callback="offCaptcha"></div>
       </div>
 
-      <button id="btn" type="submit" disabled>Réserver</button>
+      <button id="btn" type="submit" disabled>Create account</button>
       <p id="msg" role="status"></p>
     </form>
   </main>
 
-  <footer><a href="login.html">Déjà inscrit ? Se connecter</a></footer>
+  <footer><a href="login.html">Already registered? Log in</a></footer>
 
   <script>
     const API = 'https://api.susnetwork.isroot.in';
@@ -92,7 +92,7 @@
       msg.className = '';
       msg.textContent = '';
 
-      const data = Object.fromEntries(new FormData(form)); // inclut cf-turnstile-response
+      const data = Object.fromEntries(new FormData(form)); // includes cf-turnstile-response
       data.friend_code = data.friend_code.trim().toLowerCase();
       data.age_confirmed = form.age_confirmed.checked;
 
@@ -104,15 +104,15 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         });
-        const json = await res.json().catch(() => ({ message: 'Erreur inattendue.' }));
+        const json = await res.json().catch(() => ({ message: 'Unexpected error.' }));
         if (res.ok) {
-          location.replace('account.html'); // le cookie de session est déjà posé
+          location.replace('account.html'); // the session cookie is already set
           return;
         }
         msg.textContent = json.message;
         msg.className = 'err';
       } catch {
-        msg.textContent = 'Connexion impossible, réessaie.';
+        msg.textContent = 'Unable to connect, please try again.';
         msg.className = 'err';
       } finally {
         if (window.turnstile) turnstile.reset();
